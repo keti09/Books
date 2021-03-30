@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="nav">
+            <h1>Welcome, {{request.session.user_name}}!</h1> <a href="/logout" class="escape">Logout</a>
+        </div>
+
+        <div class="form">
+            <h1>Add A Favorite Book:</h1>
+            <form action="/books/create" method='POST'>
+                {% csrf_token %}
+                {% for message in messages %}
+                        <p class="text-danger small">{{ message }}</p>
+                    {% endfor %}
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="title">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" name="description">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="form">
+        <h3>Favorite Books</h3>
+                {% for book in all_books %}
+                {% if logged_user in book.favorited_by.all %}
+                    <h5><a href="/books/{{book.id}}">{{book.title}}</a></h5>
+                    <p>(added by {{book.creator.first_name}} {{book.creator.last_name}})</p>
+                {% endif %}
+                {% endfor %}
+                <h3>Other Books</h3>
+                {% for book in all_books %}
+                {% if logged_user not in book.favorited_by.all %}
+                    <h5><a href="/books/{{book.id}}">{{book.title}}</a></h5>
+                    <p>(added by {{book.creator.first_name}} {{book.creator.last_name}})</p>
+                    <a href="/favorite/{{book.id}}" role="button" class="btn btn-warning">Add to Favorites</a>
+                {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

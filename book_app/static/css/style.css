@@ -1,0 +1,38 @@
+#wrapper{
+    margin: 0px auto;
+    width: 1200px;
+}
+.form{
+    display: inline-block;
+    width: 500px;
+    text-align: center;
+    vertical-align: top;
+    margin: 25px;
+    font-family: sans-serif;
+}
+input{
+    display: block;
+    margin-left: 175px;
+}
+.submit{
+    margin: 15px 0px 25px 2px;
+}
+.nav{
+    border-bottom: 2px solid black;
+    width: 1100px;
+}
+.escape{
+    margin-left: 1000px;
+    vertical-align: top;
+    display: inline-block;
+    margin-top: -50px;
+}
+.return{
+    margin-left: 35px;
+    display: inline-block;
+}
+.container{
+    display: table-cell;
+    width: 500px;
+    vertical-align: top;
+}

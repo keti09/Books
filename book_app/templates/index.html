@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LognReg</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        {% if messages %}
+        <div class="message">
+            <ul>
+                {% for error in messages %}
+                <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+
+        <div class="form">
+            <h1>Register</h1>
+            <form action="/register" method='POST'>
+                {% csrf_token %}
+                <label>First Name:</label>
+                <input type="text" name="f_n">
+                <label>Last Name:</label>
+                <input type="text" name="l_n">
+                <label>Email:</label>
+                <input type="email" name="email">
+                <label>Password:</label>
+                <input type="password" name="pw">
+                <label>Confirm Password:</label>
+                <input type="password" name="conf_pw">
+                <button class="submit">Register</button>
+            </form>
+        </div>
+        <div class="form">
+            <h1>Login</h1>
+            <form action="/login" method='POST'>
+                {% csrf_token %}
+                <label>Email:</label>
+                <input type="text" name="email">
+                <label>Password:</label>
+                <input type="password" name="pw">
+                <button class="submit">Login</button>
+            </form>
+        </div>
+
+
+    </div>
+</body>
+</html>
